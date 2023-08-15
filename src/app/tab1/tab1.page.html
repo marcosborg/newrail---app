@@ -1,4 +1,4 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
     <ion-title>
       <img src="../../assets/logo.png" width="100">
@@ -10,9 +10,10 @@
   <img src="../../assets/bg-app.png">
   <ion-grid>
     <ion-row>
-      <ion-col>1</ion-col>
-      <ion-col>2</ion-col>
-      <ion-col>3</ion-col>
+      <ion-col size="4" *ngFor="let category of categories" (click)="goCategory(category.id)">
+        <ion-img src="{{ category.image.original_url }}"></ion-img>
+        <p>{{ category.name_pt }}</p>
+      </ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>

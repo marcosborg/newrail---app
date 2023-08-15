@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      <img src="../../assets/logo.png" width="100">
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end" *ngIf="cart.length > 0">
+    <ion-fab-button color="warning" (click)="router.navigateByUrl('checkout')">
+      <ion-icon name="cart-outline"></ion-icon>
+    </ion-fab-button>
+    <div class="quantity">{{ cart.length }}</div>
+  </ion-fab>
+  <ion-card>
+    <ion-card-content>
+      <ion-item lines="none" *ngIf="category">
+        <ion-thumbnail slot="start">
+          <img src="{{ category.image.thumbnail }}" />
+        </ion-thumbnail>
+        <ion-label>{{ category.name_pt }}</ion-label>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-content>
+      <ion-list>
+        <ion-item *ngFor="let product of products; let last = last" [lines]="last ? 'none' : null" detail="true"
+          (click)="addToCart(product.id)">
+          <ion-label>
+            <h3>{{ product.name_pt }}</h3>
+            <p>{{ product.price }} €</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

@@ -108,4 +108,13 @@ export class ApiService {
     };
     return this.http.get(this.url + 'v1/confirm-received/' + data.order_id, httpOptions);
   }
+
+  userUpdate(data: any) {
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': 'Bearer ' + data.access_token
+      })
+    };
+    return this.http.post(this.url + 'v1/user-update', data, httpOptions);
+  }
 }

@@ -91,6 +91,15 @@ export class ApiService {
     return this.http.post(this.url + 'v1/orders', data, httpOptions);
   }
 
+  myOrders(data: any) {
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': 'Bearer ' + data.access_token
+      })
+    };
+    return this.http.get(this.url + 'v1/my-orders', httpOptions);
+  }
+
   checkOrderStatus(data: any) {
     let httpOptions = {
       headers: new HttpHeaders({

@@ -1,11 +1,26 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Tab 2
+      <img src="../../assets/logo.png" width="100">
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  
+  <ion-card>
+    <ion-card-header>
+      Pedidos
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item *ngFor="let order of orders; let last = last" [lines]="last ? 'none' : null">
+          <ion-label text-wrap>
+            <h3>{{ parseProducts(order.cart) }}</h3>
+            <p>{{ order.created_at }}</p>
+          </ion-label>
+          <ion-note>{{ parseSubTotal(order.cart) }}</ion-note>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

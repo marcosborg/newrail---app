@@ -40,7 +40,7 @@ export class ProcessingPage implements OnInit {
             access_token: this.access_token,
             order_id: this.order_id
           }
-          setInterval(() => {
+          const interval = setInterval(() => {
             this.api.checkOrderStatus(data).subscribe((resp: any) => {
               this.order = resp.data;
               let preparing = this.order.preparing;
@@ -55,12 +55,17 @@ export class ProcessingPage implements OnInit {
                 this.received = true;
               }
               if (received) {
-                loading.message = 'O pedido já foi entregue';
-                loading.duration = 5000;
-                loading.present();
-                loading.onDidDismiss().then(() => {
-                  this.router.navigateByUrl('/');
-                });
+                loading.dismiss();
+                this.loadingController.create({
+                  message: 'O pedido já foi entregue',
+                  duration: 5000,
+                }).then((load) => {
+                  load.present();
+                  load.onDidDismiss().then(() => {
+                    clearInterval(interval);
+                    this.router.navigateByUrl('/');
+                  });
+                })
               }
             });
           }, 10000);

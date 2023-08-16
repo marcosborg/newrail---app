@@ -45,4 +45,67 @@ export class ApiService {
   productsByCategory(category_id: number) {
     return this.http.get(this.url + 'products/category/' + category_id);
   }
+
+  login(data: any) {
+    return this.http.post(this.url + 'login', data, this.httpOptions);
+  }
+
+  register(data: any) {
+    return this.http.post(this.url + 'register', data, this.httpOptions);
+  }
+
+  user(data: any) {
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': 'Bearer ' + data.access_token
+      })
+    };
+    return this.http.get(this.url + 'v1/user', httpOptions);
+  }
+
+  trains(data: any) {
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': 'Bearer ' + data.access_token
+      })
+    };
+    return this.http.get(this.url + 'v1/trains', httpOptions);
+  }
+
+  carriages(data: any) {
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': 'Bearer ' + data.access_token
+      })
+    };
+    return this.http.get(this.url + 'v1/carriages/' + data.train_id, httpOptions);
+  }
+
+  order(data: any) {
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': 'Bearer ' + data.access_token,
+        'Accept-Language': 'pt'
+      })
+    };
+    return this.http.post(this.url + 'v1/orders', data, httpOptions);
+  }
+
+  checkOrderStatus(data: any) {
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': 'Bearer ' + data.access_token
+      })
+    };
+    return this.http.get(this.url + 'v1/orders/' + data.order_id, httpOptions);
+  }
+
+  confirmReceived(data: any) {
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': 'Bearer ' + data.access_token
+      })
+    };
+    return this.http.get(this.url + 'v1/confirm-received/' + data.order_id, httpOptions);
+  }
 }

@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      <img src="../../assets/logo.png" width="100">
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  
+</ion-content>
+<ion-footer *ngIf="received">
+  <ion-toolbar color="warning">
+    <ion-button expand="full" fill="clear" color="light" (click)="confirmReceived()">Confirmar a receção do pedido</ion-button>
+  </ion-toolbar>
+</ion-footer>

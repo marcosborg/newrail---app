@@ -55,7 +55,7 @@ export class ProductsPage implements OnInit {
     });
   }
 
-  addToCart(product_id: number) {
+  addToCart(product_id: number, name: string, price: number) {
     this.alertController.create({
       header: 'Adicionar ao carrinho',
       subHeader: 'Pode alterar a quantidade abaixo',
@@ -75,6 +75,8 @@ export class ProductsPage implements OnInit {
           handler: (data) => {
             const cartItem = {
               product_id: product_id,
+              name: name,
+              price: price,
               quantity: parseInt(data.quantity)
             };
             const existingCartItem = this.cart.find((item: { product_id: number; }) => item.product_id === product_id);

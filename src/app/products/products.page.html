@@ -30,7 +30,7 @@
     <ion-card-content>
       <ion-list>
         <ion-item *ngFor="let product of products; let last = last" [lines]="last ? 'none' : null" detail="true"
-          (click)="addToCart(product.id)">
+          (click)="addToCart(product.id, product.name_pt, product.price)">
           <ion-label>
             <h3>{{ product.name_pt }}</h3>
             <p>{{ product.price }} €</p>

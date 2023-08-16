@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      <img src="../../assets/logo.png" width="100">
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngIf="user">
+    <ion-card-header>
+      <ion-card-title>Olá, {{ user.name }}!</ion-card-title>
+      <ion-card-subtitle>Finalizar pedido</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p>Agora precisamos saber em que viagem se encontra e onde está sentado. Pode verificar no seu bilhete.</p>
+      <p>De momento apenas estamos a servir algumas carruagens. Verifique se a sua está coberta por este serviço.</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      Selecionar comboio
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item lines="none">
+        <ion-select label-placement="floating" label="Comboio" (ionChange)="trainSelect()" [(ngModel)]="train_id">
+          <ion-select-option *ngFor="let train of trains" value="{{ train.id }}">{{ train.name }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+  <ion-card *ngIf="train_id">
+    <ion-card-header>
+      Selecionar carruagem
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item lines="none">
+        <ion-select label-placement="floating" label="Carruagem" [(ngModel)]="carriage_id">
+          <ion-select-option *ngFor="let carriage of carriages" value="{{ carriage.id }}">{{ carriage.name }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+  <ion-card *ngIf="carriage_id">
+    <ion-card-header>
+      Introduzir lugar
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item lines="none">
+        <ion-input labelPlacement="floating" label="Lugar" type="number" [(ngModel)]="seat"></ion-input>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+<ion-footer>
+  <ion-toolbar color="warning">
+    <ion-button expand="full" fill="clear" color="light" (click)="order()">Concluir o pedido</ion-button>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-button expand="full" size="small" fill="clear" color="danger" (click)="emptyCart()">Apagar
+      carrinho</ion-button>
+  </ion-toolbar>
+</ion-footer>

@@ -26,7 +26,8 @@ export class ApiService {
     await Preferences.remove({ key: key });
   };
 
-  url: string = 'http://127.0.0.1:8000/api/';
+  //url: string = 'http://127.0.0.1:8000/api/';
+  url: string = 'https://newrail.pt/api/';
 
   httpOptions = {
     headers: new HttpHeaders({

@@ -16,7 +16,7 @@ export class CheckoutPage implements OnInit {
 
   constructor(
     private api: ApiService,
-    private router: Router,
+    public router: Router,
     private alertController: AlertController
   ) { }
 

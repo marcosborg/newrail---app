@@ -25,7 +25,7 @@ export class Tab2Page {
     this.loadingController.create().then((loading) => {
       loading.present();
       this.api.checkName('access_token').then((resp) => {
-        if (resp.value) {
+        if (resp.value != null && resp.value != '') {
           this.access_token = resp.value;
           console.log(this.access_token);
           let data = {
@@ -36,6 +36,8 @@ export class Tab2Page {
             this.orders = resp;
             console.log(this.orders);
           });
+        } else {
+          loading.dismiss();
         }
       });
     });

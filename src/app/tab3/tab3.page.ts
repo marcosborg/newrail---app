@@ -106,4 +106,12 @@ export class Tab3Page {
       });
     });
   }
+
+  logout() {
+    this.api.removeName('cart').then(() => {
+      this.api.removeName('access_token').then(() => {
+        this.router.navigateByUrl('login')
+      });
+    });
+  }
 }

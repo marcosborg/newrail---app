@@ -46,13 +46,17 @@
 
 </ion-content>
 <ion-footer>
+  <ion-toolbar *ngIf="cart.total < 7" class="ion-text-center">
+    <ion-note>A encomenda tem de totalizar um valor mínimo de 7€.</ion-note>
+    <ion-button size="small" (click)="router.navigateByUrl('/')">Continuar a escolher</ion-button>
+  </ion-toolbar>
   <ion-toolbar>
     <div class="ion-text-center">
       <h1 style="margin-top: 10px;"><small>Total: </small>{{ cart.total | number: '1.2-2' }} €</h1>
     </div>
   </ion-toolbar>
   <ion-toolbar color="warning">
-    <ion-button expand="full" fill="clear" color="light" (click)="order()">Concluir o pedido</ion-button>
+    <ion-button expand="full" fill="clear" color="light" (click)="order()" [disabled]="cart.total < 7">Concluir o pedido</ion-button>
   </ion-toolbar>
   <ion-toolbar>
     <ion-button expand="full" size="small" fill="clear" color="danger" (click)="emptyCart()">Apagar

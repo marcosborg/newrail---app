@@ -3,3 +3,5 @@
 node_modules
 android
 ios
+resources/android/**/*
+www
